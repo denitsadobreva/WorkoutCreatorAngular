@@ -29,6 +29,10 @@ const ExerciseSchema = new Schema({
   videoUrl: {
     type: String,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users",
+  },
 });
 
 module.exports = Exercise = mongoose.model("exercise", ExerciseSchema);

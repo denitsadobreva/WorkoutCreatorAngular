@@ -10,16 +10,35 @@ const LogSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "workout",
   },
-  text: {
+  notes: {
     type: String,
-    required: true,
   },
   date: {
     type: Date,
     default: Date.now,
   },
-  weight: {
-    type: Number,
+  measurements: {
+    weight: {
+      type: Number,
+    },
+    bicep: {
+      type: Number,
+    },
+    chest: {
+      type: Number,
+    },
+    waist: {
+      type: Number,
+    },
+    hips: {
+      type: Number,
+    },
+    thigh: {
+      type: Number,
+    },
+    calf: {
+      type: Number,
+    },
   },
 });
 

@@ -70,4 +70,81 @@ router.post(
   }
 );
 
+// @route    GET api/users
+// @desc     List users
+// @access   Private
+router.get("/", auth, async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    GET api/users/:id
+// @desc     List users
+// @access   Private
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    PUT api/users/:id
+// @desc     Edit a user
+// @access   Private
+router.put("/:id", auth, async (req, res) => {
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          email: req.body.email,
+          password: req.body.password,
+          favoriteExercises: req.body.favoriteExercises,
+          goal: req.body.goal,
+        },
+      }
+    );
+
+    res.json(updatedUser);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    DELETE api/users/:id
+// @desc     Delete a user
+// @access   Private
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    await user.remove();
+
+    res.json({ msg: "User removed" });
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;

@@ -10,6 +10,13 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  favoriteExercises: {
+    type: [Schema.Types.ObjectId],
+    ref: "exercise",
+  },
+  goal: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now,
