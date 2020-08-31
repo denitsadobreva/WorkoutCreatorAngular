@@ -1,0 +1,42 @@
+<header>
+  <div class="logo">
+    <strong>WORKOUT</strong>
+    <span>CREATOR</span>
+  </div>
+  <nav class="navbar-links">
+    <a routerLink="/" mat-button routerLinkActive="active">Home</a>
+    <a routerLink="/exercises" mat-button routerLinkActive="active"
+      >Exercises</a
+    >
+    <a routerLink="/create" mat-button routerLinkActive="active"
+      >Create Workout</a
+    >
+    <button mat-button [matMenuTriggerFor]="menu" *ngIf="showAuthorizedLinks()">Profile</button>
+    <mat-menu #menu="matMenu" *ngIf="showAuthorizedLinks()">
+      <a mat-menu-item routerLink="/workouts" routerLinkActive="active"
+        >My Workouts</a
+      >
+      <a mat-menu-item routerLink="/fitlog" routerLinkActive="active"
+        >Fitness Log</a
+      >
+      <a mat-menu-item routerLink="/account" routerLinkActive="active"
+        >Account</a
+      >
+    </mat-menu>
+    <a routerLink="/login" mat-button routerLinkActive="active" *ngIf="showAuthorizedLinks()">Logout</a>
+    <a
+      routerLink="/login"
+      mat-stroked-button
+      color="primary"
+      routerLinkActive="active"
+      >Login</a
+    >
+    <a
+      routerLink="/register"
+      mat-flat-button
+      color="primary"
+      routerLinkActive="active"
+      >Sign Up</a
+    >
+  </nav>
+</header>
