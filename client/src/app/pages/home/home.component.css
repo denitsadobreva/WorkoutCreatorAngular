@@ -1,0 +1,15 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+p {
+  width: 320px;
+}
+
+.action-buttons > a:first-child {
+  margin-right: 0.5rem;
+}

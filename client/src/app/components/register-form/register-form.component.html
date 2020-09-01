@@ -1,1 +1,35 @@
-<p>register-form works!</p>
+<main>
+  <section>
+    <h1>Register</h1>
+    <form>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput required />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" required />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Set a Goal</mat-label>
+        <mat-select>
+          <mat-option value="lose">Lose weight</mat-option>
+          <mat-option value="gain">Gain weight</mat-option>
+          <mat-option value="maintain">Maintain</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <button mat-flat-button color="primary" type="submit">Sign Up</button>
+      <p>
+        Already a member?
+        <a routerLink="/login" routerLinkActive="active" color="accent"
+          >Log in now.</a
+        >
+      </p>
+    </form>
+  </section>
+
+  <img src="http://localhost:4200/assets/02.jpg" alt="" width="500px" />
+</main>

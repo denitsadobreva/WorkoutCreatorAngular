@@ -1,1 +1,20 @@
-<p>login-form works!</p>
+<main>
+  <h1>Log In</h1>
+  <form class="example-form">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput required />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" required />
+    </mat-form-field>
+    <br>
+    <button mat-flat-button color="primary" type="submit">Log In</button>
+    <p>
+      No account yet?
+      <a routerLink="/register" routerLinkActive="active" color="accent">Register now.</a>
+    </p>
+  </form>
+</main>
