@@ -11,8 +11,15 @@
     <a routerLink="/create" mat-button routerLinkActive="active"
       >Create Workout</a
     >
-    <button mat-button [matMenuTriggerFor]="menu" *ngIf="showAuthorizedLinks()">Profile</button>
-    <mat-menu #menu="matMenu" *ngIf="showAuthorizedLinks()">
+
+    <button
+      mat-button
+      [matMenuTriggerFor]="menu"
+      *ngIf="this.auth.isLogin()"
+    >
+      Profile
+    </button>
+    <mat-menu #menu="matMenu">
       <a mat-menu-item routerLink="/workouts" routerLinkActive="active"
         >My Workouts</a
       >
@@ -23,12 +30,21 @@
         >Account</a
       >
     </mat-menu>
-    <a routerLink="/login" mat-button routerLinkActive="active" *ngIf="showAuthorizedLinks()">Logout</a>
+
+    <a
+      routerLink="/login"
+      mat-button
+      routerLinkActive="active"
+      (click)="this.auth.logout()"
+      *ngIf="this.auth.isLogin()"
+      >Logout</a
+    >
     <a
       routerLink="/login"
       mat-stroked-button
       color="primary"
       routerLinkActive="active"
+      *ngIf="!this.auth.isLogin()"
       >Login</a
     >
     <a
@@ -36,6 +52,7 @@
       mat-flat-button
       color="primary"
       routerLinkActive="active"
+      *ngIf="!this.auth.isLogin()"
       >Sign Up</a
     >
   </nav>

@@ -3,18 +3,33 @@
   <form class="example-form">
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput required />
+      <input
+        matInput
+        required
+        #email
+        (change)="this.auth.setEmail(email.value)"
+      />
     </mat-form-field>
-    <br>
+    <br />
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput type="password" required />
+      <input
+        matInput
+        type="password"
+        required
+        #pass
+        (change)="this.auth.setPassword(pass.value)"
+      />
     </mat-form-field>
-    <br>
-    <button mat-flat-button color="primary" type="submit">Log In</button>
+    <br />
+    <a mat-flat-button color="primary" (click)="this.auth.loginApi()">
+      Log In
+    </a>
     <p>
       No account yet?
-      <a routerLink="/register" routerLinkActive="active" color="accent">Register now.</a>
+      <a routerLink="/register" routerLinkActive="active" color="accent"
+        >Register now.</a
+      >
     </p>
   </form>
 </main>
