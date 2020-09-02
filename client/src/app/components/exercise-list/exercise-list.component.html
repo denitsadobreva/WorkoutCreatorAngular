@@ -1,1 +1,6 @@
-<p>exercise-list works!</p>
+<main class="exercise-list">
+  <app-exercise-tile
+    *ngFor="let exercise of exercises"
+    [exercise]="exercise"
+  ></app-exercise-tile>
+</main>

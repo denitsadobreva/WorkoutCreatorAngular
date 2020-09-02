@@ -1,1 +1,22 @@
-<p>exercise-tile works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ this.exercise.name }}</mat-card-title>
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="this.exercise.photoUrl"
+    [alt]="this.exercise.name"
+  />
+  <mat-card-content>
+    <p>
+      {{ this.exercise.description.substr(0, 100) + '&hellip;' }}
+    </p>
+    <mat-chip-list aria-label="exercise details">
+      <mat-chip>{{ this.exercise.level }}</mat-chip>
+      <mat-chip color="primary" selected>{{ this.exercise.type }}</mat-chip>
+      <mat-chip color="accent" selected>{{
+        this.exercise.muscleGroups[0]
+      }}</mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+</mat-card>

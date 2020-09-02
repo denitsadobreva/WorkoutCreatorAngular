@@ -34,6 +34,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -87,6 +89,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCardModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

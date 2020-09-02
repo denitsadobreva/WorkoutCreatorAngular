@@ -1,0 +1,7 @@
+.exercise-list {
+  padding: 3rem;
+  justify-items: center;
+  grid-gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
