@@ -8,9 +8,6 @@
     [alt]="this.exercise.name"
   />
   <mat-card-content>
-    <p>
-      {{ this.exercise.description.substr(0, 100) + '&hellip;' }}
-    </p>
     <mat-chip-list aria-label="exercise details">
       <mat-chip>{{ this.exercise.level }}</mat-chip>
       <mat-chip color="primary" selected>{{ this.exercise.type }}</mat-chip>
@@ -18,5 +15,11 @@
         this.exercise.muscleGroups[0]
       }}</mat-chip>
     </mat-chip-list>
+    <p>
+      {{ this.exercise.description.substr(0, 100) + "&hellip;" }}
+    </p>
+
+    <mat-icon>favorite</mat-icon>
+    <button mat-button (click)="openDialog()">Open dialog</button>
   </mat-card-content>
 </mat-card>

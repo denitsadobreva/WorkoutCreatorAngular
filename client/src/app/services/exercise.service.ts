@@ -10,7 +10,7 @@ export interface Exercise {
   muscleGroups?: string[];
   equipment?: string[];
   photoUrl?: string;
-  videoUrl?: [];
+  videoUrl?: string;
   user?: string;
 }
 

@@ -1,0 +1,30 @@
+<section class="exercise-details">
+  <h2 mat-dialog-title>{{ this.data.exercise.name }}</h2>
+  <mat-dialog-content class="mat-typography">
+    <iframe
+      width="100%"
+      height="300px"
+      [src]="this.data.exercise.videoUrl | safe"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+    <mat-chip-list aria-label="exercise details">
+      <mat-chip>{{ this.data.exercise.level }}</mat-chip>
+      <mat-chip color="primary" selected>{{
+        this.data.exercise.type
+      }}</mat-chip>
+      <mat-chip color="accent" selected>{{
+        this.data.exercise.muscleGroups[0]
+      }}</mat-chip>
+    </mat-chip-list>
+    <p class="description">
+      {{ this.data.exercise.description }}
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+      Add to Favorites
+    </button>
+    <button mat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</section>
