@@ -1,1 +1,14 @@
-<p>workout-form works!</p>
+<form>
+  <mat-form-field>
+    <mat-label>Workout Name</mat-label>
+    <input matInput required />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+  <br />
+  <app-exercise-drag-drop></app-exercise-drag-drop>
+  <a mat-flat-button color="primary">Create</a>
+</form>

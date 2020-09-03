@@ -1,0 +1,9 @@
+.exercise-drag-drop {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+    min-width: 400px;
+    min-height: 400px;
+}
