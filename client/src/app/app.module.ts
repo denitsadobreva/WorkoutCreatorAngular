@@ -38,6 +38,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ExerciseDetailsComponent } from './components/exercise-details/exercise-details.component';
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -99,6 +100,7 @@ const appRoutes: Routes = [
     MatChipsModule,
     MatDialogModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

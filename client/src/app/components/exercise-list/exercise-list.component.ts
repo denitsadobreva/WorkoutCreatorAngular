@@ -8,6 +8,7 @@ import { ExerciseService, Exercise } from '../../services/exercise.service';
 })
 export class ExerciseListComponent implements OnInit {
   exercises: Exercise[];
+  spinner: boolean = true;
 
   constructor(public exerciseService: ExerciseService) {}
 
@@ -16,8 +17,10 @@ export class ExerciseListComponent implements OnInit {
   }
 
   getExercises(): void {
-    this.exerciseService
-      .getExercises()
-      .subscribe((exercises) => (this.exercises = exercises));
+    this.spinner = true;
+    this.exerciseService.getExercises().subscribe((exercises) => {
+      this.exercises = exercises;
+      this.spinner = false;
+    });
   }
 }
