@@ -12,6 +12,7 @@ export interface Exercise {
   photoUrl?: string;
   videoUrl?: string;
   user?: string;
+  _id: string;
 }
 
 @Injectable({

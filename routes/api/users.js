@@ -73,24 +73,11 @@ router.post(
 );
 
 // @route    GET api/users
-// @desc     List users
+// @desc     Get user details
 // @access   Private
 router.get("/", auth, async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-// @route    GET api/users/:id
-// @desc     List users
-// @access   Private
-router.get("/:id", auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user.id);
 
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
@@ -104,13 +91,13 @@ router.get("/:id", auth, async (req, res) => {
   }
 });
 
-// @route    PUT api/users/:id
+// @route    PUT api/users
 // @desc     Edit a user
 // @access   Private
-router.put("/:id", auth, async (req, res) => {
+router.put("/", auth, async (req, res) => {
   try {
     const updatedUser = await User.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: req.user.id },
       {
         $set: {
           email: req.body.email,
@@ -128,12 +115,12 @@ router.put("/:id", auth, async (req, res) => {
   }
 });
 
-// @route    DELETE api/users/:id
+// @route    DELETE api/users
 // @desc     Delete a user
 // @access   Private
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user.id);
 
     if (!user) {
       return res.status(404).json({ msg: "User not found" });

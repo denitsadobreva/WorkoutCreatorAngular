@@ -18,8 +18,31 @@
     <p>
       {{ this.exercise.description.substr(0, 100) + "&hellip;" }}
     </p>
-
-    <mat-icon>favorite</mat-icon>
-    <button mat-button (click)="openDialog()">Open dialog</button>
+    <mat-card-actions align="end">
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="add to favorites"
+        [disabled]="!this.user"
+        (click)="
+          this.user && this.user.favoriteExercises.includes(this.exercise._id)
+            ? removeFavorite(this.exercise._id)
+            : addFavorite(this.exercise._id)
+        "
+      >
+        <mat-icon
+          *ngIf="
+            this.user &&
+              this.user.favoriteExercises.includes(this.exercise._id);
+            else notAdded
+          "
+          >favorite</mat-icon
+        >
+      </button>
+      <ng-template #notAdded><mat-icon>favorite_border</mat-icon></ng-template>
+      <button mat-icon-button aria-label="more details" (click)="openDialog()">
+        <mat-icon>launch</mat-icon>
+      </button>
+    </mat-card-actions>
   </mat-card-content>
 </mat-card>

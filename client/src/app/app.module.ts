@@ -41,6 +41,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ExerciseDetailsComponent } from './components/exercise-details/exercise-details.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -101,6 +102,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -5,6 +5,7 @@
     <app-exercise-tile
       *ngFor="let exercise of exercises"
       [exercise]="exercise"
+      [user]="this.user"
     ></app-exercise-tile>
   </div>
 </main>

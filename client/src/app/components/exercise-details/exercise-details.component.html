@@ -23,8 +23,24 @@
     </p>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
-      Add to Favorites
+    <button
+      mat-button
+      color="primary"
+      [disabled]="!this.data.user"
+      (click)="
+        this.data.user &&
+        this.data.user.favoriteExercises.includes(this.data.exercise._id)
+          ? this.removeFavorite(this.data.exercise._id)
+          : this.addFavorite(this.data.exercise._id)
+      "
+    >
+      {{
+        this.data.user &&
+        this.data.user.favoriteExercises.includes(this.data.exercise._id)
+          ? "Remove from"
+          : "Add to"
+      }}
+      Favorites
     </button>
     <button mat-button mat-dialog-close>Close</button>
   </mat-dialog-actions>

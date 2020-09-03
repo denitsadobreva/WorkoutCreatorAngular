@@ -5,3 +5,7 @@
 .example-header-image {
   background-size: cover;
 }
+
+.mat-card-actions {
+  padding: 0;
+}

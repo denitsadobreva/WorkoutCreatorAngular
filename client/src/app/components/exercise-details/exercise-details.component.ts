@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Exercise } from '../../services/exercise.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-exercise-details',
@@ -8,7 +8,24 @@ import { Exercise } from '../../services/exercise.service';
   styleUrls: ['./exercise-details.component.css'],
 })
 export class ExerciseDetailsComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Exercise) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public userService: UserService
+  ) {}
+
+  addFavorite(exerciseId: string) {
+    this.data.user.favoriteExercises.push(exerciseId);
+    this.userService.updateUser(this.data.user);
+  }
+
+  removeFavorite(exerciseId: string) {
+    const index = this.data.user.favoriteExercises.indexOf(exerciseId);
+    if (index > -1) {
+      this.data.user.favoriteExercises.splice(index, 1);
+    }
+
+    this.userService.updateUser(this.data.user);
+  }
 
   ngOnInit(): void {}
 }
