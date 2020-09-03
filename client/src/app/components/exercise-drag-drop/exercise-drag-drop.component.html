@@ -1,22 +1,46 @@
 <div class="exercise-drag-drop" *ngIf="!spinner">
-  <div class="container" [dragula]="EXERCISES" [(dragulaModel)]="exercises">
-    <div *ngFor="let exercise of exercises">{{ exercise.name }}</div>
+  <div class="container exercises-left" [dragula]="EXERCISES" [(dragulaModel)]="exercises">
+    <div *ngFor="let exercise of exercises">
+      <span>{{ exercise.name }}</span>
+      <button
+        *ngIf="this.user.favoriteExercises.includes(exercise._id)"
+        mat-icon-button
+        disabled
+        aria-label="favorite"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        aria-label="more details"
+        (click)="openDialog(exercise)"
+      >
+        <mat-icon>launch</mat-icon>
+      </button>
+    </div>
   </div>
   <div
-    class="container"
+    class="container exercises-workout"
     [dragula]="EXERCISES"
     [(dragulaModel)]="workoutExercises"
   >
     <div *ngFor="let workoutExercise of workoutExercises">
       <span>{{ workoutExercise.name }}</span>
       <mat-form-field appearance="fill">
-        <input matInput type="number" min="1">
+        <input matInput type="number" min="1" />
         <span matSuffix>reps</span>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <input matInput type="number" min="1">
+        <input matInput type="number" min="1" />
         <span matSuffix>sets</span>
       </mat-form-field>
+      <button
+        mat-icon-button
+        aria-label="more details"
+        (click)="openDialog(workoutExercise)"
+      >
+        <mat-icon>launch</mat-icon>
+      </button>
     </div>
   </div>
 </div>

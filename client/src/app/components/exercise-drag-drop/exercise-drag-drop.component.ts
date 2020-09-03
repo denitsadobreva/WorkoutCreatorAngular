@@ -4,6 +4,8 @@ import { DragulaService } from 'ng2-dragula';
 import { ExerciseService, Exercise } from '../../services/exercise.service';
 import { UserService, User } from '../../services/user.service';
 import { WorkoutExercise } from '../../services/workout.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ExerciseDetailsComponent } from '../exercise-details/exercise-details.component';
 
 @Component({
   selector: 'app-exercise-drag-drop',
@@ -24,7 +26,8 @@ export class ExerciseDragDropComponent implements OnInit {
   public constructor(
     private dragulaService: DragulaService,
     public exerciseService: ExerciseService,
-    public userService: UserService
+    public userService: UserService,
+    public dialog: MatDialog
   ) {
     this.subs.add(
       dragulaService
@@ -76,4 +79,14 @@ export class ExerciseDragDropComponent implements OnInit {
     });
   }
 
+  openDialog(exercise) {
+    const dialogRef = this.dialog.open(ExerciseDetailsComponent, {
+      data: {
+        exercise: exercise,
+        user: this.user,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {});
+  }
 }

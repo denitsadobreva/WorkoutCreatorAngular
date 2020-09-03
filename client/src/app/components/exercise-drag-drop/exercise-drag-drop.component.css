@@ -1,9 +1,25 @@
 .exercise-drag-drop {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .container {
-    min-width: 400px;
-    min-height: 400px;
+  min-width: 400px;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+
+.exercises-left {
+  text-align: left;
+}
+
+.exercises-workout {
+  text-align: left;
 }
