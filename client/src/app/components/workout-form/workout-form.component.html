@@ -1,14 +1,14 @@
 <form>
   <mat-form-field>
     <mat-label>Workout Name</mat-label>
-    <input matInput required />
+    <input matInput required (change)="this.workoutService.setName($event.target.value)" />
   </mat-form-field>
   <br />
   <mat-form-field>
     <mat-label>Description</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput (change)="this.workoutService.setDescription($event.target.value)"></textarea>
   </mat-form-field>
   <br />
   <app-exercise-drag-drop></app-exercise-drag-drop>
-  <a mat-flat-button color="primary">Create</a>
+  <a mat-flat-button color="primary" (click)="this.workoutService.createWorkout()">Create</a>
 </form>

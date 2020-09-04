@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DragulaService } from 'ng2-dragula';
 import { ExerciseService, Exercise } from '../../services/exercise.service';
 import { UserService, User } from '../../services/user.service';
-import { WorkoutExercise } from '../../services/workout.service';
+import { WorkoutExercise, WorkoutService } from '../../services/workout.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ExerciseDetailsComponent } from '../exercise-details/exercise-details.component';
 
@@ -14,44 +14,40 @@ import { ExerciseDetailsComponent } from '../exercise-details/exercise-details.c
 })
 export class ExerciseDragDropComponent implements OnInit {
   EXERCISES = 'EXERCISES';
-  /* public many = ['The', 'possibilities', 'are', 'endless!'];
-  public many2 = ['Explore', 'them']; */
-  public exercises: Exercise[];
-  public workoutExercises: Exercise[] = [];
+  public exercisesLeft: Exercise[];
+  public exercisesRight: Exercise[] = [];
   user: User;
   spinner: boolean = true;
-
+  
   subs = new Subscription();
 
   public constructor(
     private dragulaService: DragulaService,
     public exerciseService: ExerciseService,
     public userService: UserService,
+    public workoutService: WorkoutService,
     public dialog: MatDialog
   ) {
     this.subs.add(
       dragulaService
         .dropModel(this.EXERCISES)
         .subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
-          console.log('dropModel:');
-          console.log(el);
-          console.log(source);
-          console.log(target);
-          console.log(sourceModel);
-          console.log(targetModel);
-          console.log(item);
+          if (target.classList.contains('exercises-workout')) {
+            this.workoutService.addedExercises = targetModel;
+            this.workoutService.addedExercisesMap.set(item._id, {
+              exercise: item._id,
+              reps: 10,
+              sets: 3,
+            });
+          } else {
+            this.workoutService.addedExercises = sourceModel;
+          }
         })
     );
     this.subs.add(
       dragulaService
         .removeModel(this.EXERCISES)
-        .subscribe(({ el, source, item, sourceModel }) => {
-          console.log('removeModel:');
-          console.log(el);
-          console.log(source);
-          console.log(sourceModel);
-          console.log(item);
-        })
+        .subscribe(({ el, source, item, sourceModel }) => {})
     );
   }
 
@@ -67,7 +63,7 @@ export class ExerciseDragDropComponent implements OnInit {
   getExercises(): void {
     this.spinner = true;
     this.exerciseService.getExercises().subscribe((exercises) => {
-      this.exercises = exercises;
+      this.exercisesLeft = exercises;
       this.spinner = false;
     });
   }
@@ -75,7 +71,6 @@ export class ExerciseDragDropComponent implements OnInit {
   getUser(): void {
     this.userService.getUser().subscribe((user) => {
       this.user = user;
-      console.log(user);
     });
   }
 
