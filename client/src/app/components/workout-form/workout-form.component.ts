@@ -5,13 +5,16 @@ import { Exercise } from '../../services/exercise.service';
 @Component({
   selector: 'app-workout-form',
   templateUrl: './workout-form.component.html',
-  styleUrls: ['./workout-form.component.css']
+  styleUrls: ['./workout-form.component.css'],
 })
 export class WorkoutFormComponent implements OnInit {
+  constructor(public workoutService: WorkoutService) {}
 
-  constructor(public workoutService: WorkoutService) { }
-
-  ngOnInit(): void {
+  public isButtonDisabled() {
+    return (
+      !this.workoutService.name || !this.workoutService.addedExercises.length
+    );
   }
 
+  ngOnInit(): void {}
 }

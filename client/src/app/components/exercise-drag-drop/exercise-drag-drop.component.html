@@ -4,61 +4,81 @@
     [dragula]="EXERCISES"
     [(dragulaModel)]="exercisesLeft"
   >
-    <div *ngFor="let exerciseLeft of exercisesLeft">
-      <span>{{ exerciseLeft.name }}</span>
-      <button
-        *ngIf="this.user.favoriteExercises.includes(exerciseLeft._id)"
-        mat-icon-button
-        disabled
-        aria-label="favorite"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        aria-label="more details"
-        (click)="openDialog(exerciseLeft)"
-      >
-        <mat-icon>launch</mat-icon>
-      </button>
-    </div>
+    <mat-card *ngFor="let exerciseLeft of exercisesLeft" class="exercise-left">
+      <span class="exercise-left-name">{{ exerciseLeft.name }}</span>
+      <div class="exercise-left-actions">
+        <button
+          *ngIf="this.user.favoriteExercises.includes(exerciseLeft._id)"
+          mat-icon-button
+          disabled
+          aria-label="favorite"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          aria-label="more details"
+          (click)="openDialog(exerciseLeft)"
+        >
+          <mat-icon>launch</mat-icon>
+        </button>
+      </div>
+    </mat-card>
   </div>
   <div
-    class="container exercises-workout"
+    class="container exercises-right"
     [dragula]="EXERCISES"
     [(dragulaModel)]="exercisesRight"
   >
-    <div *ngFor="let exerciseRight of exercisesRight">
-      <span>{{ exerciseRight.name }}</span>
-      <mat-form-field appearance="fill">
-        <input
-          matInput
-          autofilled
-          type="number"
-          min="1"
-          placeholder="10"
-          (change)="this.workoutService.setReps(exerciseRight._id, $event.target.value)"
-        />
-        <span matSuffix>reps</span>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <input
-          matInput
-          type="number"
-          min="1"
-          placeholder="3"
-          (change)="this.workoutService.setSets(exerciseRight._id, $event.target.value)"
-        />
-        <span matSuffix>sets</span>
-      </mat-form-field>
-      <button
-        mat-icon-button
-        aria-label="more details"
-        (click)="openDialog(exerciseRight)"
-      >
-        <mat-icon>launch</mat-icon>
-      </button>
-    </div>
+    <span *ngIf="!this.exercisesRight.length" class="no-exercises-message"
+      >Drag and drop exercises for your workout here.</span
+    >
+    <mat-card
+      *ngFor="let exerciseRight of exercisesRight"
+      class="exercise-right"
+    >
+      <span class="exercise-right-name">{{ exerciseRight.name }}</span>
+      <div class="exercise-right-actions">
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            autofilled
+            type="number"
+            min="1"
+            placeholder="10"
+            (change)="
+              this.workoutService.setReps(
+                exerciseRight._id,
+                $event.target.value
+              )
+            "
+          />
+          <span matSuffix>reps</span>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            type="number"
+            min="1"
+            placeholder="3"
+            (change)="
+              this.workoutService.setSets(
+                exerciseRight._id,
+                $event.target.value
+              )
+            "
+          />
+          <span matSuffix>sets</span>
+        </mat-form-field>
+        <button
+          mat-icon-button
+          aria-label="more details"
+          (click)="openDialog(exerciseRight)"
+        >
+          <mat-icon>launch</mat-icon>
+        </button>
+      </div>
+    </mat-card>
   </div>
 </div>
 

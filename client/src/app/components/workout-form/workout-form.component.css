@@ -1,0 +1,13 @@
+.disabled {
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.mat-form-field {
+  width: 400px;
+}
+
+.create-btn {
+  margin: 1.5rem 0;
+}

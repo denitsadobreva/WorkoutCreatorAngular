@@ -5,8 +5,7 @@
 }
 
 .container {
-  min-width: 400px;
-  max-height: 400px;
+  max-height: 500px;
   overflow-y: scroll;
 }
 
@@ -17,9 +16,45 @@
 }
 
 .exercises-left {
+  width: 400px;
   text-align: left;
 }
 
-.exercises-workout {
+.exercises-right {
+  width: 600px;
   text-align: left;
+  background-color: #B39CDB;
+}
+
+.mat-form-field {
+  width: 100px;
+  height: 60px;
+}
+
+.exercise-left,
+.exercise-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.exercise-left-actions,
+.exercise-right-actions {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.exercise-left-name,
+.exercise-right-name {
+  word-break: break-word;
+}
+
+.no-exercises-message {
+  color: white;
+  font-size: 2rem;
+  display: inline-block;
+  text-align: center;
+  margin-top: 200px;
 }
