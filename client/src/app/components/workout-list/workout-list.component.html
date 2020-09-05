@@ -1,7 +1,14 @@
 <div class="workout-list">
   <mat-spinner *ngIf="this.spinner" class="spinner"></mat-spinner>
 
-  <mat-accordion *ngIf="!this.spinner">
+  <span class="no-workouts" *ngIf="!this.spinner && !this.workouts.size"
+    >No workouts yet<br>
+    <a routerLink="/create" routerLinkActive="active" color="accent"
+      >Create one now</a
+    ></span
+  >
+
+  <mat-accordion *ngIf="!this.spinner" class="workout-list-panel">
     <mat-expansion-panel *ngFor="let workout of workouts.values()" hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -51,4 +58,11 @@
       </ng-template>
     </mat-expansion-panel>
   </mat-accordion>
+
+  <img
+    *ngIf="!this.spinner"
+    src="http://localhost:4200/assets/03.jpg"
+    alt=""
+    width="500px"
+  />
 </div>

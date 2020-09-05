@@ -1,11 +1,19 @@
 .mat-expansion-panel {
-  width: 700px;
+  width: 580px;
+  margin-right: 1rem;
+}
+
+.no-workouts {
+  align-self: center;
+  justify-self: center;
+  width: 580px;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .workout-list {
   display: flex;
   justify-content: center;
-  align-items: center;
   padding-bottom: 1rem;
 }
 
