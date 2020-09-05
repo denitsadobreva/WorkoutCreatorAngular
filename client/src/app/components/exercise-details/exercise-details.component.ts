@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-exercise-details',
@@ -10,7 +11,8 @@ import { UserService } from '../../services/user.service';
 export class ExerciseDetailsComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public userService: UserService
+    public userService: UserService,
+    public authService: AuthService
   ) {}
 
   addFavorite(exerciseId: string) {

@@ -8,6 +8,7 @@ main {
 
 p {
   width: 320px;
+  font-size: 1.2rem;
 }
 
 .action-buttons > a:first-child {

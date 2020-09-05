@@ -1,0 +1,24 @@
+.mat-expansion-panel {
+  width: 700px;
+}
+
+.workout-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.icon {
+  width: 18px;
+}
+
+.info-short {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sets-reps {
+  color: #673ab7;
+}

@@ -26,6 +26,7 @@
     <button
       mat-button
       color="primary"
+      *ngIf="this.data.user || !this.authService.isLogin()"
       [disabled]="!this.data.user"
       (click)="
         this.data.user &&

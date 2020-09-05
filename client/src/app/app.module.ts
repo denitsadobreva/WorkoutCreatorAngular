@@ -42,7 +42,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ExerciseDetailsComponent } from './components/exercise-details/exercise-details.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { DragulaModule } from 'ng2-dragula';
+import { MatDividerModule } from '@angular/material/divider';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -104,7 +106,9 @@ const appRoutes: Routes = [
     MatIconModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatExpansionModule,
     DragulaModule.forRoot(),
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

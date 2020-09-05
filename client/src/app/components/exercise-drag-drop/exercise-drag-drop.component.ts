@@ -32,7 +32,7 @@ export class ExerciseDragDropComponent implements OnInit {
       dragulaService
         .dropModel(this.EXERCISES)
         .subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
-          if (target.classList.contains('exercises-workout')) {
+          if (target.classList.contains('exercises-right')) {
             this.workoutService.addedExercises = targetModel;
             this.workoutService.addedExercisesMap.set(item._id, {
               exercise: item._id,

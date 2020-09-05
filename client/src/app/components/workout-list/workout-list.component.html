@@ -1,5 +1,54 @@
-<div>
+<div class="workout-list">
   <mat-spinner *ngIf="this.spinner" class="spinner"></mat-spinner>
 
-  <div *ngFor="let workout of workouts">{{ workout.name }}</div>
+  <mat-accordion *ngIf="!this.spinner">
+    <mat-expansion-panel *ngFor="let workout of workouts.values()" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ workout.name }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ workout.description }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <mat-list>
+          <mat-list-item *ngFor="let e of workout.exercises">
+            <div class="info-short">
+              <div>
+                <span>{{ this.exercises.get(e.exercise).name }} </span>
+                <span class="sets-reps"
+                  >{{ e.sets }} sets X {{ e.reps }} reps</span
+                >
+              </div>
+              <button
+                mat-icon-button
+                aria-label="more details"
+                (click)="openDialog(this.exercises.get(e.exercise))"
+              >
+                <mat-icon>launch</mat-icon>
+              </button>
+            </div>
+            <mat-divider></mat-divider
+          ></mat-list-item>
+        </mat-list>
+
+        <mat-action-row>
+          <button
+            mat-button
+            color="warn"
+            (click)="this.deleteWorkout(workout._id)"
+          >
+            <span class="material-icons"> delete </span> Delete
+          </button>
+          <button mat-button color="accent">
+            <span class="material-icons"> create </span> Edit
+          </button>
+          <button mat-button color="primary">
+            <span class="material-icons"> print </span> Print
+          </button>
+        </mat-action-row>
+      </ng-template>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

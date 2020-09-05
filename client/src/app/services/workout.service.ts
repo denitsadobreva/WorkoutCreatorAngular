@@ -48,7 +48,9 @@ export class WorkoutService {
   }
 
   getExercises() {
-    return this.addedExercises.map(({ _id }) => this.addedExercisesMap.get(_id));
+    return this.addedExercises.map(({ _id }) =>
+      this.addedExercisesMap.get(_id)
+    );
   }
 
   createWorkout() {
@@ -71,6 +73,12 @@ export class WorkoutService {
           this.router.navigate(['/workouts']);
         }
       });
+  }
+
+  deleteWorkout(id): Observable<any> {
+    return this.http.delete(`${this.workoutURL}/${id}`, {
+      headers: { 'X-Auth-Token': localStorage.getItem(this.TOKEN_KEY) },
+    });
   }
 
   getWorkouts(): Observable<any> {
