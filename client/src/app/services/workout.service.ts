@@ -11,6 +11,7 @@ export interface WorkoutExercise {
 }
 
 export interface Workout {
+  _id: string;
   name: string;
   description: string;
   exercises: WorkoutExercise[];
@@ -24,8 +25,8 @@ export class WorkoutService {
   TOKEN_KEY = 'jwt';
   public addedExercises: Exercise[] = [];
   public addedExercisesMap = new Map<string, WorkoutExercise>();
-  public name: string;
-  public description: string;
+  public name: string = '';
+  public description: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -75,6 +76,28 @@ export class WorkoutService {
       });
   }
 
+  editWorkout(id) {
+    this.http
+      .put(
+        `${this.workoutURL}/${id}`,
+        {
+          name: this.name,
+          description: this.description,
+          exercises: this.getExercises(),
+        },
+        {
+          headers: { 'X-Auth-Token': localStorage.getItem(this.TOKEN_KEY) },
+          observe: 'response',
+        }
+      )
+      .subscribe((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          this.router.navigate(['/workouts']);
+        }
+      });
+  }
+
   deleteWorkout(id): Observable<any> {
     return this.http.delete(`${this.workoutURL}/${id}`, {
       headers: { 'X-Auth-Token': localStorage.getItem(this.TOKEN_KEY) },
@@ -83,6 +106,12 @@ export class WorkoutService {
 
   getWorkouts(): Observable<any> {
     return this.http.get(this.workoutURL, {
+      headers: { 'X-Auth-Token': localStorage.getItem(this.TOKEN_KEY) },
+    });
+  }
+
+  getWorkout(id): Observable<any> {
+    return this.http.get(`${this.workoutURL}/${id}`, {
       headers: { 'X-Auth-Token': localStorage.getItem(this.TOKEN_KEY) },
     });
   }

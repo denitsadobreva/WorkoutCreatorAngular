@@ -3,6 +3,7 @@ import { WorkoutService } from '../../services/workout.service';
 import { ExerciseService } from '../../services/exercise.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ExerciseDetailsComponent } from '../exercise-details/exercise-details.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workout-list',
@@ -17,7 +18,8 @@ export class WorkoutListComponent implements OnInit {
   constructor(
     public workoutService: WorkoutService,
     public exerciseService: ExerciseService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -53,10 +55,14 @@ export class WorkoutListComponent implements OnInit {
   openDialog(exercise) {
     const dialogRef = this.dialog.open(ExerciseDetailsComponent, {
       data: {
-        exercise: exercise
+        exercise: exercise,
       },
     });
 
     dialogRef.afterClosed().subscribe((result) => {});
+  }
+
+  goToEditWorkout(id) {
+    this.router.navigate(['/workouts', id]);
   }
 }

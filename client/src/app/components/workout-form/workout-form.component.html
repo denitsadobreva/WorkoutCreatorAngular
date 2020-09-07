@@ -4,6 +4,7 @@
     <input
       matInput
       required
+      [value]="this.workoutService.name"
       (change)="this.workoutService.setName($event.target.value)"
     />
   </mat-form-field>
@@ -12,17 +13,22 @@
     <mat-label>Description</mat-label>
     <textarea
       matInput
+      [value]="this.workoutService.description"
       (change)="this.workoutService.setDescription($event.target.value)"
     ></textarea>
   </mat-form-field>
   <br />
-  <app-exercise-drag-drop></app-exercise-drag-drop>
+  <app-exercise-drag-drop [editMode]="this.editMode"></app-exercise-drag-drop>
   <a
     mat-flat-button
     color="primary"
     class="create-btn"
     [ngClass]="{ disabled: this.isButtonDisabled() }"
-    (click)="this.workoutService.createWorkout()"
+    (click)="
+      this.editMode
+        ? this.workoutService.editWorkout(this.workout._id)
+        : this.workoutService.createWorkout()
+    "
     >Save Workout</a
   >
 </form>

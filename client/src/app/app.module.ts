@@ -45,10 +45,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DragulaModule } from 'ng2-dragula';
 import { MatDividerModule } from '@angular/material/divider';
+import { EditComponent } from './pages/edit/edit.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'create', component: CreateComponent, canActivate: [AuthGuard] },
+  {
+    path: 'create',
+    component: CreateComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full',
+  },
   { path: 'exercises', component: ExercisesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -56,8 +62,9 @@ const appRoutes: Routes = [
   { path: 'workouts', component: WorkoutsComponent, canActivate: [AuthGuard] },
   {
     path: 'workouts/:id',
-    component: CreateComponent,
+    component: EditComponent,
     canActivate: [AuthGuard],
+    pathMatch: 'full',
   },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent },
@@ -89,6 +96,7 @@ const appRoutes: Routes = [
     ChangePassComponent,
     ExerciseDetailsComponent,
     SafePipe,
+    EditComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,9 @@
+<main>
+  <h1>Edit Workout</h1>
+  <mat-spinner *ngIf="this.spinner" class="spinner"></mat-spinner>
+  <app-workout-form
+    *ngIf="!this.spinner"
+    [workout]="this.workout"
+    [editMode]="true"
+  ></app-workout-form>
+</main>

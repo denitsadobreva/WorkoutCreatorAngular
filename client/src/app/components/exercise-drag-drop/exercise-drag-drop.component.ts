@@ -3,7 +3,10 @@ import { Subscription } from 'rxjs';
 import { DragulaService } from 'ng2-dragula';
 import { ExerciseService, Exercise } from '../../services/exercise.service';
 import { UserService, User } from '../../services/user.service';
-import { WorkoutExercise, WorkoutService } from '../../services/workout.service';
+import {
+  WorkoutExercise,
+  WorkoutService,
+} from '../../services/workout.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ExerciseDetailsComponent } from '../exercise-details/exercise-details.component';
 
@@ -13,12 +16,13 @@ import { ExerciseDetailsComponent } from '../exercise-details/exercise-details.c
   styleUrls: ['./exercise-drag-drop.component.css'],
 })
 export class ExerciseDragDropComponent implements OnInit {
+  @Input() editMode: boolean = false;
   EXERCISES = 'EXERCISES';
   public exercisesLeft: Exercise[];
   public exercisesRight: Exercise[] = [];
   user: User;
   spinner: boolean = true;
-  
+
   subs = new Subscription();
 
   public constructor(
@@ -64,6 +68,14 @@ export class ExerciseDragDropComponent implements OnInit {
     this.spinner = true;
     this.exerciseService.getExercises().subscribe((exercises) => {
       this.exercisesLeft = exercises;
+      if (this.editMode) {
+        this.workoutService.addedExercises = Array.from(
+          this.workoutService.addedExercisesMap.keys()
+        ).map((id) => exercises.find((el) => el._id === id));
+
+        this.exercisesRight = this.workoutService.addedExercises;
+      }
+
       this.spinner = false;
     });
   }
