@@ -46,6 +46,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { DragulaModule } from 'ng2-dragula';
 import { MatDividerModule } from '@angular/material/divider';
 import { EditComponent } from './pages/edit/edit.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -114,6 +115,7 @@ const appRoutes: Routes = [
     MatIconModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatSnackBarModule,
     MatExpansionModule,
     DragulaModule.forRoot(),
     MatDividerModule,

@@ -1,1 +1,15 @@
-<p>change-pass works!</p>
+<section>
+  <h3>Change password</h3>
+  <mat-form-field>
+    <mat-label>New Password</mat-label>
+    <input
+      matInput
+      type="password"
+      #pass
+      (change)="this.setPassword(pass.value)"
+    />
+  </mat-form-field>
+  <button mat-stroked-button color="primary" (click)="this.updateUser()">
+    Save new password
+  </button>
+</section>

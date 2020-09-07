@@ -16,6 +16,8 @@ export interface User {
 export class UserService {
   usersURL = '/api/users';
   TOKEN_KEY = 'jwt';
+  password: string;
+  goal: string;
 
   constructor(private http: HttpClient) {}
 
@@ -25,9 +27,13 @@ export class UserService {
     });
   }
 
-  updateUser(user: User): Observable<User> {
-    return this.http.put<User>(this.usersURL, user, {
-      headers: { 'X-Auth-Token': localStorage.getItem(this.TOKEN_KEY) },
-    });
+  updateUser(user: User) {
+    this.http
+      .put<User>(this.usersURL, user, {
+        headers: { 'X-Auth-Token': localStorage.getItem(this.TOKEN_KEY) },
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 }
