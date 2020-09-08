@@ -1,0 +1,28 @@
+<section>
+  <div *ngIf="!this.editMode">
+    <p *ngIf="this.user.goal; else noGoal">
+      Your goal is to {{ this.goalsMap.get(this.user.goal) }}.
+      <button mat-button color="primary" (click)="this.enableEdit()">
+        Change goal
+      </button>
+    </p>
+    <ng-template #noGoal>
+      No goal set yet.
+      <button mat-button color="primary" (click)="this.enableEdit()">
+        Set goal
+      </button>
+    </ng-template>
+  </div>
+
+  <div *ngIf="this.editMode">
+    <mat-form-field>
+      <mat-label>Set a Goal</mat-label>
+      <mat-select [(value)]="goalSet">
+        <mat-option *ngFor="let goal of goals" [value]="goal.value">
+          {{ goal.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button color="primary" (click)="this.setGoal()">Save</button>
+  </div>
+</section>

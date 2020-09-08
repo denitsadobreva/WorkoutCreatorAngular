@@ -25,14 +25,14 @@
       <br />
       <mat-form-field>
         <mat-label>Set a Goal</mat-label>
-        <mat-select (change)="this.auth.setGoal($event.target.value)">
+        <mat-select [(value)]="goalSet">
           <mat-option *ngFor="let goal of goals" [value]="goal.value">
             {{ goal.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <br />
-      <a mat-flat-button color="primary" (click)="this.auth.register()"
+      <a mat-flat-button color="primary" (click)="this.register()"
         >Sign Up</a
       >
       <p>

@@ -13,7 +13,6 @@ import { ExercisesComponent } from './pages/exercises/exercises.component';
 import { FitLogComponent } from './pages/fit-log/fit-log.component';
 import { WorkoutsComponent } from './pages/workouts/workouts.component';
 import { WorkoutListComponent } from './components/workout-list/workout-list.component';
-import { WorkoutComponent } from './components/workout/workout.component';
 import { ExerciseListComponent } from './components/exercise-list/exercise-list.component';
 import { ExerciseTileComponent } from './components/exercise-tile/exercise-tile.component';
 import { ExerciseFilterComponent } from './components/exercise-filter/exercise-filter.component';
@@ -47,6 +46,9 @@ import { DragulaModule } from 'ng2-dragula';
 import { MatDividerModule } from '@angular/material/divider';
 import { EditComponent } from './pages/edit/edit.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { GoalComponent } from './components/goal/goal.component';
+import { ProgressChartComponent } from './components/progress-chart/progress-chart.component';
+import { CalendarLogComponent } from './components/calendar-log/calendar-log.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -83,7 +85,6 @@ const appRoutes: Routes = [
     FitLogComponent,
     WorkoutsComponent,
     WorkoutListComponent,
-    WorkoutComponent,
     ExerciseListComponent,
     ExerciseTileComponent,
     ExerciseFilterComponent,
@@ -98,6 +99,9 @@ const appRoutes: Routes = [
     ExerciseDetailsComponent,
     SafePipe,
     EditComponent,
+    GoalComponent,
+    ProgressChartComponent,
+    CalendarLogComponent,
   ],
   imports: [
     HttpClientModule,
