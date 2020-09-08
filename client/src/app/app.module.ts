@@ -49,6 +49,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { GoalComponent } from './components/goal/goal.component';
 import { ProgressChartComponent } from './components/progress-chart/progress-chart.component';
 import { CalendarLogComponent } from './components/calendar-log/calendar-log.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -123,6 +125,7 @@ const appRoutes: Routes = [
     MatExpansionModule,
     DragulaModule.forRoot(),
     MatDividerModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   providers: [],
   bootstrap: [AppComponent],
