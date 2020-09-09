@@ -6,4 +6,6 @@
       [user]="this.user"
     ></app-exercise-tile>
   </div>
+
+  <h2 *ngIf="!this.exercises.length">No exercises of the selected category.</h2>
 </main>
