@@ -1,4 +1,14 @@
 <main>
-  <app-exercise-filter></app-exercise-filter>
-  <app-exercise-list></app-exercise-list>
+  <mat-spinner *ngIf="this.spinner" class="spinner"></mat-spinner>
+
+  <app-exercise-filter
+    *ngIf="!this.spinner"
+    (filtered)="this.onChangeFilter($event)"
+    [filteredPart]="this.filter"
+  ></app-exercise-filter>
+  <app-exercise-list
+    *ngIf="!this.spinner"
+    [exercises]="this.exercisesFiltered"
+    [user]="this.user"
+  ></app-exercise-list>
 </main>

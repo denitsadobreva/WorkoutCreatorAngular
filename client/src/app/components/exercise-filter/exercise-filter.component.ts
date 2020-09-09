@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-exercise-filter',
@@ -7,16 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExerciseFilterComponent implements OnInit {
   imageUrl: string = 'http://localhost:4200/assets/figure/blank.png';
+  @Output() filtered = new EventEmitter<string>();
+  @Input() filteredPart: string;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  clear() {
+    if (this.filteredPart) {
+      this.imageUrl = `http://localhost:4200/assets/figure/${this.filteredPart}.png`;
+    } else {
+      this.imageUrl = 'http://localhost:4200/assets/figure/blank.png';
+    }
+  }
 
   mouseEnter(bodyPart: string) {
     this.imageUrl = `http://localhost:4200/assets/figure/${bodyPart}.png`;
   }
 
   filter(bodyPart: string) {
-    console.log(bodyPart);
+    this.imageUrl = `http://localhost:4200/assets/figure/${bodyPart}.png`;
+    this.filtered.emit(bodyPart);
   }
 }

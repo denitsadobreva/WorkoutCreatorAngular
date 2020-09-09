@@ -5,8 +5,3 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-
-.spinner {
-  margin-left: auto;
-  margin-right: auto;
-}
