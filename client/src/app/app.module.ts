@@ -51,6 +51,7 @@ import { ProgressChartComponent } from './components/progress-chart/progress-cha
 import { CalendarLogComponent } from './components/calendar-log/calendar-log.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -117,6 +118,7 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatCardModule,
     MatChipsModule,
+    MatSlideToggleModule,
     MatDialogModule,
     MatIconModule,
     MatProgressSpinnerModule,
@@ -125,7 +127,10 @@ const appRoutes: Routes = [
     MatExpansionModule,
     DragulaModule.forRoot(),
     MatDividerModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -18,6 +18,7 @@ import { ExerciseDetailsComponent } from '../exercise-details/exercise-details.c
 export class ExerciseDragDropComponent implements OnInit {
   @Input() editMode: boolean = false;
   EXERCISES = 'EXERCISES';
+  public exercisesUnfiltered: Exercise[];
   public exercisesLeft: Exercise[];
   public exercisesRight: Exercise[] = [];
   user: User;
@@ -67,6 +68,7 @@ export class ExerciseDragDropComponent implements OnInit {
   getExercises(): void {
     this.spinner = true;
     this.exerciseService.getExercises().subscribe((exercises) => {
+      this.exercisesUnfiltered = exercises;
       this.exercisesLeft = exercises;
       if (this.editMode) {
         this.workoutService.addedExercises = Array.from(
@@ -84,6 +86,16 @@ export class ExerciseDragDropComponent implements OnInit {
     this.userService.getUser().subscribe((user) => {
       this.user = user;
     });
+  }
+
+  toggleFilterFavorites() {
+    if (this.exercisesLeft.length === this.exercisesUnfiltered.length) {
+      this.exercisesLeft = this.user.favoriteExercises.map((id) =>
+        this.exercisesUnfiltered.find((exercise) => exercise._id === id)
+      );
+    } else {
+      this.exercisesLeft = this.exercisesUnfiltered;
+    }
   }
 
   openDialog(exercise) {

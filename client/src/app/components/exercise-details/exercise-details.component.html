@@ -14,8 +14,8 @@
       <mat-chip color="primary" selected>{{
         this.data.exercise.type
       }}</mat-chip>
-      <mat-chip color="accent" selected>{{
-        this.data.exercise.muscleGroups[0]
+      <mat-chip color="accent" selected *ngFor="let muscle of this.data.exercise.muscleGroups">{{
+        muscle
       }}</mat-chip>
     </mat-chip-list>
     <p class="description">

@@ -1,3 +1,8 @@
+<div class="slider">
+  <mat-slide-toggle (toggleChange)="this.toggleFilterFavorites()" color="primary">
+    Show only my favorites
+  </mat-slide-toggle>
+</div>
 <div class="exercise-drag-drop" *ngIf="!spinner">
   <div
     class="container exercises-left"
