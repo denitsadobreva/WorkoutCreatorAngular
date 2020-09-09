@@ -1,5 +1,5 @@
 <div class="slider">
-  <mat-slide-toggle (toggleChange)="this.toggleFilterFavorites()" color="primary">
+  <mat-slide-toggle (toggleChange)="this.toggleFilterFavorites()" [disabled]="!this.user.favoriteExercises.length" color="primary">
     Show only my favorites
   </mat-slide-toggle>
 </div>
